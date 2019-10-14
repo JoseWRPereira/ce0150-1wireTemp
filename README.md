@@ -1,0 +1,1 @@
+# ce0150-1wireTemp

@@ -42,6 +42,7 @@
 #include "config.h"
 #include "lcd4bitBus.h"
 #include "keyboard.h"
+#include "oneWire-DHT11.h"
 
 
 void interrupt geral( void )
@@ -58,10 +59,23 @@ void interrupt geral( void )
 //***************** Programa Principal
 void main(void)
 {
+    DHT sensor;
+    unsigned char ut[17] = "T=      U=      ";
+
     initLCD();
     initKeyboard();
+    initDHT11();
+    
     
     lcd(0,0, "Curta Eletronica");
+
+    if( dht( &sensor ) )    // CRC ok
+    {
+        intTOstr((unsigned int)sensor.temperatura,  &ut[ 2], 0 );
+        intTOstr((unsigned int)sensor.umidade,      &ut[10], 0 );
+    }
+
+    lcd(0,1,ut );
     
     while( 1 )                      // Laço de repetição infinita.
     {

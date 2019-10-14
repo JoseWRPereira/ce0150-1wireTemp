@@ -12,7 +12,7 @@
  * **************** Procedimentos de acesso ao LCD
  */
 void initLCD( void );
-void intTOstr( int ui16, char * str );
+void intTOstr( int ui16, char * str, unsigned char final );
 void lcd( unsigned char x, unsigned char y, const char * ptr );
 void lcdxy( unsigned char x, unsigned char y );
 void clearLCD( void );

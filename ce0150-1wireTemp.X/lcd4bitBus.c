@@ -198,7 +198,7 @@ void lcd( unsigned char x, unsigned char y, const char * ptr )
  * Retorno: -
  * Objetivo: Converter um número em string.
  */
-void intTOstr( int ui16, char * str )
+void intTOstr( int ui16, char * str, unsigned char final )
 {
     for(int div=10000; div>=1; div/=10 )
     {
@@ -206,7 +206,8 @@ void intTOstr( int ui16, char * str )
         ui16 = ui16 % div;
         ++str;
     }
-    *str = 0;
+    if( final )
+        *str = 0;
 }
 
 

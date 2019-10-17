@@ -67,16 +67,8 @@ void main(void)
     initDHT11();
     
     
-    lcd(0,0, "Curta Eletronica");
+    lcd(0,0, "CurtaEletronica");
 
-    if( dht( &sensor ) )    // CRC ok
-    {
-        intTOstr((unsigned int)sensor.temperatura,  &ut[ 2], 0 );
-        intTOstr((unsigned int)sensor.umidade,      &ut[10], 0 );
-    }
-
-    lcd(0,1,ut );
-    
     while( 1 )                      // Laço de repetição infinita.
     {
         keyboardScan();
@@ -84,6 +76,17 @@ void main(void)
         if( currentKey() && !previousKey() )
         {
         }
+
+
+        if( dht( &sensor ) )    // CRC ok
+        {
+            intTOstr((unsigned int)sensor.temperatura,  &ut[ 2], 0 );
+            intTOstr((unsigned int)sensor.umidade,      &ut[10], 0 );
+        }
+
+        lcd(0,1,ut );
+
+        __delay_ms(2000);
     }
     return;
 }
